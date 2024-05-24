@@ -137,10 +137,11 @@ class checkpoint():
                     filename, tensor = queue.get()
                     if filename is None: break
                     img = tensor.numpy()
-                    print("Haha" + str(img.shape))
+                    
                     if (img.shape[-1] == 1):
                         img = np.tile(img, (1, 1, 3))
-                    imageio.imwrite(filename, tensor.numpy())
+                    print("Haha" + str(img.shape))
+                    imageio.imwrite(filename, img)
         
         self.process = [
             Process(target=bg_target, args=(self.queue,)) \
