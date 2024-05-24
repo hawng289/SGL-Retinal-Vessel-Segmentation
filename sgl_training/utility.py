@@ -138,8 +138,8 @@ class checkpoint():
                     if filename is None: break
                     img = tensor.numpy()
                     print("Haha" + str(img.shape))
-                    if (len(img.shape) == 4):
-                        img = img.squeeze(0).permute(1, 2, 0)
+                    if (img.shape[-1] == 1):
+                        img = np.tile(img, (1, 1, 3))
                     imageio.imwrite(filename, tensor.numpy())
         
         self.process = [
