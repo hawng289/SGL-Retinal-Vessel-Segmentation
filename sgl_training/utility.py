@@ -136,6 +136,10 @@ class checkpoint():
                 if not queue.empty():
                     filename, tensor = queue.get()
                     if filename is None: break
+                    img = tensor.numpy()
+                    print("Haha" + str(img.shape))
+                    if (len(img.shape) == 4):
+                        img = img.squeeze(0).permute(1, 2, 0)
                     imageio.imwrite(filename, tensor.numpy())
         
         self.process = [
