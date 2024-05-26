@@ -138,7 +138,7 @@ class Loss(nn.modules.loss._Loss):
             label = '{} Loss'.format(l['type'])
             fig = plt.figure()
             plt.title(label)
-            if (self.log.shape == 1):
+            if (len(self.log.shape) == 1):
                 log = self.log[i].numpy()
             else:
                 log = self.log[:, i]
