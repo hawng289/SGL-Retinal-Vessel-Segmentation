@@ -212,14 +212,13 @@ def calc_metrics(pred, sr, hr, npf=False):
     pred = np.transpose(pred[0].cpu().numpy(), (1,2,0)) 
     sr = sr.reshape([-1]).astype(np.uint8)
     hr = hr.reshape([-1]).astype(np.uint8)
-    print(sr.shape)
-    print(sr.argmax)
-    print(sr.argmin)
-    print(sr)
+    
     pred = pred.reshape([-1])
     my_confusion = metrics.confusion_matrix(sr, hr).astype(np.float32)
     meanIU, Acc,Se,Sp, IU = calculate_Accuracy(my_confusion)
-    Auc = roc_auc_score(hr, pred)
+    Auc = None
+    if(sr.argmin() != sr.argmax()):
+        Auc = roc_auc_score(hr, pred)
     return Acc,Se,Sp,Auc, IU[0], IU[1]
 
 def calc_psnr(sr, hr, scale, rgb_range, align=False, dataset=None):
