@@ -140,7 +140,7 @@ class checkpoint():
                     
                     if (img.shape[-1] == 1):
                         img = np.tile(img, (1, 1, 3))
-                    print("Haha" + str(img.shape))
+                
                     imageio.imwrite(filename, img)
         
         self.process = [

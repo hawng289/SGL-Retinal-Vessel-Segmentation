@@ -53,7 +53,6 @@ class Trainer():
             data_pack = self.prepare(data_pack)
             timer_data.hold()
             timer_model.tic()
-            print(len(data_pack))
             hr, ve, ma, pm, _ = data_pack = data_pack
             self.optimizer.zero_grad()
             enh, estimation= self.model(hr, 1)
@@ -250,4 +249,4 @@ class Trainer():
             return True
         else:
             epoch = self.optimizer.get_last_epoch() + 1
-            return epoch > self.args.epochs
+            return epoch >= self.args.epochs
