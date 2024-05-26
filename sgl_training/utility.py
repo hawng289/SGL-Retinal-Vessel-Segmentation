@@ -216,8 +216,7 @@ def calc_metrics(pred, sr, hr, npf=False):
     pred = pred.reshape([-1])
     my_confusion = metrics.confusion_matrix(sr, hr).astype(np.float32)
     meanIU, Acc,Se,Sp, IU = calculate_Accuracy(my_confusion)
-    if(hr.argmin() == hr.argmax()):
-        hr[0] = 1 - hr.argmin()
+
     Auc = roc_auc_score(hr, pred)
     return Acc,Se,Sp,Auc, IU[0], IU[1]
 
