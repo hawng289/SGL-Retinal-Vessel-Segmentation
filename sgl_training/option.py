@@ -11,7 +11,7 @@ parser.add_argument('--template', default='.',
 # Hardware specifications
 parser.add_argument('--n_threads', type=int, default=4,
                     help='number of threads for data loading')
-parser.add_argument('--cpu', action='store_true', default=False,
+parser.add_argument('--cpu', action='store_true',
                     help='use cpu only')
 parser.add_argument('--n_GPUs', type=int, default=1,
                     help='number of GPUs')
@@ -19,15 +19,15 @@ parser.add_argument('--seed', type=int, default=1,
                     help='random seed')
 
 # Data specifications
-parser.add_argument('--dir_data', type=str, default='dataset',
+parser.add_argument('--dir_data', type=str, default='../dataset',
                     help='dataset directory')
-parser.add_argument('--dir_demo', type=str, default='test',
+parser.add_argument('--dir_demo', type=str, default='../test',
                     help='demo image directory')
 parser.add_argument('--data_train', type=str, default='DRIVE',
                     help='train dataset name')
-parser.add_argument('--data_test', type=str, default='CHASE',
+parser.add_argument('--data_test', type=str, default='DRIVE',
                     help='test dataset name')
-parser.add_argument('--dataset', type=str, default='CHASE',
+parser.add_argument('--dataset', type=str, default='DRIVE',
                     help='model for different dataset name: DRIVE OR CHASE')
 parser.add_argument('--data_range', type=str, default='1-20/1-20',
                     help='train/test data range')
@@ -52,12 +52,12 @@ parser.add_argument('--poled', action='store_true',
 parser.add_argument('--syn', action='store_true',
                     help='testing on synthesis data, requires offset shift')
 # Model specifications
-parser.add_argument('--model', default='CON',
+parser.add_argument('--model', default='EDSR',
                     help='model name')
 
 parser.add_argument('--act', type=str, default='relu',
                     help='activation function')
-parser.add_argument('--pre_train', type=str, default='pretrained/chase_k8.pth',
+parser.add_argument('--pre_train', type=str, default='',
                     help='pre-trained model directory')
 parser.add_argument('--extend', type=str, default='.',
                     help='pre-trained model directory')
@@ -94,7 +94,7 @@ parser.add_argument('--reduction', type=int, default=16,
                     help='number of feature maps reduction')
 
 # Training specifications
-parser.add_argument('--reset', action='store_true', default=True,
+parser.add_argument('--reset', action='store_true',
                     help='reset the training')
 parser.add_argument('--test_every', type=int, default=1000,
                     help='do test per every N batches')
@@ -104,9 +104,9 @@ parser.add_argument('--batch_size', type=int, default=16,
                     help='input batch size for training')
 parser.add_argument('--split_batch', type=int, default=1,
                     help='split the batch into smaller chunks')
-parser.add_argument('--self_ensemble', action='store_true', default=True,
+parser.add_argument('--self_ensemble', action='store_true',
                     help='use self-ensemble method for test')
-parser.add_argument('--test_only', action='store_true', default=True,
+parser.add_argument('--test_only', action='store_true',
                     help='set this option to test the model')
 parser.add_argument('--gan_k', type=int, default=5,
                     help='k value for adversarial loss')
@@ -139,7 +139,7 @@ parser.add_argument('--skip_threshold', type=float, default='1e8',
                     help='skipping batch that has large error')
 
 # Log specifications
-parser.add_argument('--save', type=str, default='test_chase_k8',
+parser.add_argument('--save', type=str, default='test',
                     help='file name to save')
 parser.add_argument('--mark', type=str, default='',
                     help='which file to train')
@@ -151,9 +151,9 @@ parser.add_argument('--save_models', action='store_true',
                     help='save all intermediate models')
 parser.add_argument('--print_every', type=int, default=100,
                     help='how many batches to wait before logging training status')
-parser.add_argument('--save_results', action='store_true', default=True,
+parser.add_argument('--save_results', action='store_true',
                     help='save output results')
-parser.add_argument('--save_gt', action='store_true', default=True,
+parser.add_argument('--save_gt', action='store_true',
                     help='save low-resolution and high-resolution images together')
 
 args = parser.parse_args()
@@ -171,4 +171,3 @@ for arg in vars(args):
         vars(args)[arg] = True
     elif vars(args)[arg] == 'False':
         vars(args)[arg] = False
-
