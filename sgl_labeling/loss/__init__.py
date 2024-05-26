@@ -150,7 +150,7 @@ class Loss(nn.modules.loss._Loss):
         if self.n_GPUs == 1:
             return self.loss_module
         else:
-            return self.loss_module.modules
+            return self.loss_module.modules()
 
     def save(self, apath):
         torch.save(self.state_dict(), os.path.join(apath, 'loss.pt'))
