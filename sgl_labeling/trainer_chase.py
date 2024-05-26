@@ -54,12 +54,12 @@ class Trainer():
             timer_data.hold()
             timer_model.tic()
             print(len(data_pack))
-            hr, ve = data_pack
+            hr, ve, ma, pm, _ = data_pack = data_pack
             self.optimizer.zero_grad()
             enh, estimation= self.model(hr, 1)
             #loss = self.bce_loss(estimation, ve)  #l1 supervisions
             #loss = self.ploss(medmap, med) + 
-            loss = self.loss(estimation, ve)# + 0.01*self.tv_loss(enh)# + self.pbce_loss(estimation, ve, pm*ma)  #l1 supervisions
+            loss = self.loss(estimation, ve, pm)# + 0.01*self.tv_loss(enh)# + self.pbce_loss(estimation, ve, pm*ma)  #l1 supervisions
             loss.backward()
             if self.args.gclip > 0:
                 utils.clip_grad_value_(
