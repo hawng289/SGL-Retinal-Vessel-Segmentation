@@ -138,7 +138,11 @@ class Loss(nn.modules.loss._Loss):
             label = '{} Loss'.format(l['type'])
             fig = plt.figure()
             plt.title(label)
-            plt.plot(axis, self.log[:, i].numpy(), label=label)
+            if (self.log.shape == 1):
+                log = self.log[i].numpy()
+            else:
+                log = self.log[:, i]
+            plt.plot(axis, log, label=label)
             plt.legend()
             plt.xlabel('Epochs')
             plt.ylabel('Loss')
