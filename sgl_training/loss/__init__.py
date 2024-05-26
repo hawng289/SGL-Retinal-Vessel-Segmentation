@@ -141,7 +141,7 @@ class Loss(nn.modules.loss._Loss):
             if (len(self.log.shape) == 1):
                 log = self.log[i].numpy()
             else:
-                log = self.log[:, i]
+                log = self.log[:, i].numpy()
             plt.plot(axis, log, label=label)
             plt.legend()
             plt.xlabel('Epochs')

@@ -23,8 +23,7 @@ def main():
         _loss = loss.Loss(args, checkpoint) if not args.test_only else None
         t = Trainer(args, loader, _model, _loss, checkpoint)
         while not t.terminate():
-
-
+            t.train()
             t.test()
 
         checkpoint.done()
