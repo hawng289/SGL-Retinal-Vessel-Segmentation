@@ -16,18 +16,6 @@ def main():
         from trainer import Trainer
     else:
         from trainer_chase import Trainer
-
-    if args.data_test == ['video']:
-        from videotester import VideoTester
-        model = model.Model(args, checkpoint)
-        t = VideoTester(args, model, checkpoint)
-        t.test()
-    elif args.data_test == ['cam']:
-        from cameratester import CamTester
-        model = model.Model(args, checkpoint)
-        t = CamTester(args, model, checkpoint)
-        t.test()
-    else:
         if checkpoint.ok:
             loader = data.Data(args)
             _model = model.Model(args, checkpoint)
