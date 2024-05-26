@@ -167,7 +167,7 @@ def ttsep(ve_map):
 
 def get_patch(hr, ve_r, patch_size=256, deform = True, train=True, random_toggle=False):
     ve = np.zeros((hr.shape[:2]))
-    ve[ve_r > 200] = 1
+    ve[ve_r] = 1
     ih, iw = hr.shape[:2]
     if train:
         ih, iw = hr.shape[:2]
