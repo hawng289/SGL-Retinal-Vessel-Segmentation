@@ -53,6 +53,7 @@ class Trainer():
             data_pack = self.prepare(data_pack)
             timer_data.hold()
             timer_model.tic()
+            print(len(data_pack))
             hr, ve = data_pack
             self.optimizer.zero_grad()
             enh, estimation= self.model(hr, 1)
