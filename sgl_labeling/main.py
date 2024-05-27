@@ -8,6 +8,8 @@ from option import args
 
 torch.manual_seed(args.seed)
 checkpoint = utility.checkpoint(args)
+import warnings
+warnings.filterwarnings("ignore")
 
 def main():
     global model
